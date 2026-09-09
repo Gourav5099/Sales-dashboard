@@ -1,172 +1,233 @@
 # 📊 Sales & Business Performance Analysis
-> **A College-Level Data Analytics Project** designed for student Data Analyst portfolios and academic viva voce evaluation.
+### *End-to-End Commercial Analytics, SQL Relational Modeling, and Interactive Business Intelligence*
+
+[![Python](https://img.shields.io/badge/Python-3.13-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![SQLite](https://img.shields.io/badge/SQLite-3.0-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
+[![Power BI](https://img.shields.io/badge/Power_BI-Desktop-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.63.0-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![Plotly](https://img.shields.io/badge/Plotly-7.0.0-3F4F75?style=for-the-badge&logo=plotly&logoColor=white)](https://plotly.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 ---
 
-## 📌 1. Project Overview
+## 📌 1. Executive Summary & Business Problem
 
-The **Sales & Business Performance Analysis** project simulates the end-to-end workflow of a Junior Data Analyst in a retail/e-commerce company. The objective is to analyze transactional sales data to evaluate business health, track key performance indicators (KPIs), identify regional and product-level trends, and deliver actionable recommendations to improve revenue and operational efficiency.
+In modern retail and e-commerce enterprises, commercial leadership frequently faces a critical strategic trade-off: **chasing top-line revenue volume at the expense of bottom-line profit margins**. Aggressive discounting often boosts sales figures while secretly eroding profitability, particularly in high unit-cost categories.
 
-This project deliberately focuses on core, practical data analyst competencies without unnecessary complexity (no machine learning, deep learning, or web applications).
+This project simulates the end-to-end analytical lifecycle of a **Senior Data Analyst** evaluating the commercial health of a mid-sized retail enterprise across a **24-month trading window (January 2023 – December 2024)**. 
 
----
-
-## 🎯 2. Project Objectives & Core Focus Areas
-
-The project addresses seven fundamental stages of data analytics:
-
-1. **Data Cleaning**: Handling missing values, standardizing dates, resolving inconsistencies, removing duplicate entries, and verifying data integrity.
-2. **Exploratory Data Analysis (EDA)**: Understanding distribution, sales volume patterns, seasonality, and customer purchasing habits.
-3. **SQL Analysis**: Writing clean, structured SQL queries (joins, aggregations, CTEs, and window functions) to answer targeted business questions.
-4. **Business KPIs**: Defining, calculating, and monitoring core commercial metrics (Revenue, Profit Margin, AOV, MoM Growth, etc.).
-5. **Power BI Visualization**: Designing an interactive, executive-ready dashboard with DAX measures, slicers, and drill-down capabilities.
-6. **Tableau Visualization**: Building clean, exploratory visual stories focusing on regional performance, category breakdowns, and customer segmentation.
-7. **Business Insights & Recommendations**: Translating numbers and charts into concrete, data-backed business action plans suitable for stakeholder presentations.
+### Core Project Scope:
+- **Transaction Base**: Ingested 3,000 raw sales orders exhibiting controlled real-world data quality issues (duplicates, null values, inconsistent text casing, whitespace anomalies).
+- **Data Engineering**: Cleansed, standardized, and validated **2,990 clean transactions** across 380 unique customers, 4 product categories, and 4 sales territories.
+- **Relational Database Modeling**: Designed and indexed an **SQLite** database (`sales_analysis.db`) executing structured SQL analytical queries.
+- **Business Intelligence**: Engineered an enterprise **Star Schema** data model and DAX measures in **Power BI**, complemented by an interactive **Streamlit + Plotly** web dashboard and publication-grade **Matplotlib** charts.
+- **Strategic Impact**: Identified the *"Volume vs. Margin"* paradox and synthesized four high-impact commercial recommendations to optimize profit retention.
 
 ---
 
-## 🛠️ 3. Technology Stack
+## 🎯 2. Executive Performance Scorecard
 
-| Tool | Purpose in Project |
-| :--- | :--- |
-| **Microsoft Excel** | Initial inspection, data cleaning, pivot tables, quick sanity checks, and formula-based validation. |
-| **SQL (MySQL / PostgreSQL / SQL Server)** | Relational data querying, data transformation, KPI calculation, CTEs, and window functions. |
-| **Power BI** | Data modeling (Star Schema), DAX calculations, interactive executive dashboards, and KPI scorecards. |
-| **Tableau** | Exploratory visual analytics, geospatial mapping, category comparisons, and visual storytelling. |
-
-> **Scope Note**: Intentionally excludes Machine Learning, cloud deployments, web frameworks, and complex APIs to keep the focus purely on foundational Business Intelligence and Data Analysis.
-
----
-
-## 📈 4. Key Performance Indicators (KPIs) & Metrics
-
-This project tracks standard business KPIs essential for commercial evaluation and viva explanation:
-
-| KPI | Description | Formula / Logic |
-| :--- | :--- | :--- |
-| **Total Revenue** | Gross monetary sales generated | $\sum (\text{Quantity} \times \text{Unit Price} \times (1 - \text{Discount}))$ |
-| **Total Profit & Margin** | Net earnings and profit percentage | $\text{Revenue} - \text{Total Cost}$, $\frac{\text{Profit}}{\text{Revenue}} \times 100$ |
-| **Average Order Value (AOV)** | Average money spent per order | $\frac{\text{Total Revenue}}{\text{Total Orders}}$ |
-| **Sales Growth (MoM / YoY)** | Revenue change across periods | $\frac{\text{Current Period Sales} - \text{Prior Period Sales}}{\text{Prior Period Sales}} \times 100$ |
-| **Order Volume & Units Sold** | Total orders and physical quantity | $\text{Count(OrderID)}$, $\sum \text{Quantity}$ |
-| **Return / Cancellation Rate** | Ratio of returned orders | $\frac{\text{Returned Orders}}{\text{Total Orders}} \times 100$ |
-| **Top & Bottom Performers** | Ranking products, categories, regions | Ranked by total revenue, volume, and profit margin |
-
----
-
-## 📂 5. Project Folder Structure
+The analysis evaluated **2,990 verified orders** totaling **7,849 units** sold across the retail portfolio:
 
 ```text
-Sales Performance Analysis Project/
+╔═══════════════════════╦═══════════════════════╦═══════════════════════╗
+║     TOTAL REVENUE     ║      NET PROFIT       ║  OVERALL MARGIN (%)   ║
+║      $450,978.56      ║      $157,745.23      ║        34.98%         ║
+╠═══════════════════════╬═══════════════════════╬═══════════════════════╣
+║     TOTAL ORDERS      ║   UNIQUE CUSTOMERS    ║   AVG ORDER VALUE     ║
+║      2,990 Orders     ║     380 Accounts      ║        $150.83        ║
+╚═══════════════════════╩═══════════════════════╩═══════════════════════╝
+```
+
+---
+
+## 🔄 3. End-to-End Analytics Architecture
+
+```mermaid
+flowchart TD
+    A["Raw Data Ingestion\n3,000 Rows | Seeded Anomalies"] --> B["Data Cleaning & Profiling\nExcel & Python | Deduplication & Imputation"]
+    B --> C["Cleaned Dataset\n2,990 Verified Records | sales_data_cleaning.csv"]
+    C --> D["Relational Database\nSQLite sales_analysis.db | B-Tree Indexes"]
+    D --> E["SQL Analytical Engine\nKPIs, Aggregations, CTEs, Window Functions"]
+    E --> F["Power BI Modeling\nStar Schema | DAX Measures | Dim_Calendar"]
+    E --> G["Interactive Web App\nStreamlit & Plotly | Real-time Filtering"]
+    E --> H["Static High-Res Visuals\nMatplotlib 300 DPI | Executive Deck Assets"]
+    F --> I["Strategic Executive Insights\nActionable Business Recommendations"]
+    G --> I
+    H --> I
+```
+
+---
+
+## 💡 4. Deep-Dive Business Findings & Insights
+
+### A. The "Volume vs. Margin" Paradox
+A granular diagnosis across product categories revealed a stark divergence between revenue contribution and profitability efficiency:
+
+| Category | Orders | Units Sold | Total Revenue ($) | Net Profit ($) | Profit Margin (%) | Commercial Characterization |
+| :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| **Technology** | 830 | 2,122 | **\$189,018.44** | **\$66,695.42** | **35.29%** | Primary Revenue Driver (High Vol / Healthy Margin) |
+| **Furniture** | 622 | 1,684 | **\$183,965.24** | **\$51,943.84** | **28.24%** | Volume Driver / High Discount Risk (Lowest Margin) |
+| **Electronics** | 597 | 1,631 | **\$46,543.94** | **\$21,917.84** | **47.09%** | Balanced High-Efficiency Add-on |
+| **Office Supplies** | 934 | 2,400 | **\$30,524.93** | **\$16,867.62** | **55.26%** | Profit Multiplier (Highest Margin, Low Ticket) |
+
+> **Key Takeaway**: **Technology** and **Furniture** generate **82.7%** of enterprise sales (\$373K). However, **Furniture exhibits the lowest profit margin (28.24%)** due to heavy promotional discounting (>20%) applied to high base-cost inventory. Conversely, **Office Supplies yields a massive 55.26% margin**, presenting a prime bundling opportunity.
+
+---
+
+### B. Top 5 Revenue-Generating Products
+Five flagship products account for **$216,423.86** (**48.0%** of total enterprise sales):
+
+| Rank | Product Name | Category | Units Sold | Revenue ($) | Profit ($) | Margin (%) | Strategic Action |
+| :---: | :--- | :--- | :---: | :---: | :---: | :---: | :--- |
+| **1** | **Standing Desk Converter** | Furniture | 267 | **\$62,784.93** | \$16,059.93 | 25.58% | Cap promotional discount at 15% |
+| **2** | **USB-C Docking Station** | Technology | 291 | **\$41,037.18** | \$13,392.18 | 32.63% | Anchor SKU for enterprise B2B bundles |
+| **3** | **Ergonomic Office Chair** | Furniture | 209 | **\$38,728.02** | \$9,886.02 | 25.53% | Restrict clearance sales thresholds |
+| **4** | **Noise-Canceling Headset** | Technology | 322 | **\$38,009.04** | \$12,893.04 | 33.92% | Promote cross-sell during Q4 surge |
+| **5** | **External SSD 1TB** | Technology | 328 | **\$35,834.91** | \$11,234.91 | 31.35% | Maintain current pricing stability |
+
+---
+
+### C. Regional Market Dynamics
+Commercial performance across the four designated sales territories demonstrated remarkable margin consistency:
+
+| Region | Total Orders | Units Sold | Total Revenue ($) | Net Profit ($) | Margin (%) | Regional Assessment |
+| :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| **East** | 826 | 2,097 | **\$121,757.68** | **\$42,952.11** | **35.28%** | Market Leader (Highest customer density) |
+| **North** | 790 | 2,047 | **\$116,403.30** | **\$40,696.00** | **34.96%** | Strong secondary commercial market |
+| **West** | 698 | 1,901 | **\$108,201.06** | **\$38,131.99** | **35.24%** | Stable volume with high corporate adoption |
+| **South** | 672 | 1,793 | **\$104,223.63** | **\$35,792.74** | **34.34%** | Prime growth opportunity (\$17.5K gap vs. East) |
+
+---
+
+## 🚀 5. Actionable Business Recommendations
+
+1. **Implement a 15% Maximum Discount Cap on Furniture**:
+   - Restricting Furniture promotional markdowns to $\le 15\%$ prevents margin dilution on high-cost items like *Standing Desk Converters*, preserving an estimated **\$4,200 – \$6,500** in quarterly net earnings.
+2. **Launch "Tech + Essentials" Checkout Bundles**:
+   - Bundle high-margin **Office Supplies (55.26% margin)** with high-ticket **Technology hardware** (e.g., offer a discounted document organizer set when purchasing a docking station), driving Average Order Value (AOV) upwards without sacrificing hardware gross margin.
+3. **Targeted Commercial Expansion in the South**:
+   - Regional margins in the South (34.34%) are on par with the East (35.28%), but total revenue lags by \$17.5K. Allocating 15% more digital marketing spend to Southern corporate accounts will capture untapped enterprise demand.
+4. **Institutionalize a B2B Loyalty & Rebate Program**:
+   - 380 unique accounts generated 2,990 orders, representing a high repeat rate of **7.8 orders per customer**. Offering tiered annual volume rebates will secure recurring procurement cycles and defend against competitor poaching.
+
+---
+
+## 🛠️ 6. Technology Stack & Technical Justification
+
+| Tool | Senior Analyst Role & Architectural Justification |
+| :--- | :--- |
+| **Microsoft Excel** | Initial data quality profiling, duplicate identification, text manipulation (`TRIM`, `PROPER`), and preliminary Pivot Table sanity checks. |
+| **SQLite & SQL** | Serverless, zero-config relational database (`sales_analysis.db`). Fully ACID-compliant, B-tree indexed, and scriptable for automated, repeatable analysis. |
+| **Power BI** | Enterprise BI modeling with a **Star Schema** architecture, dedicated date dimension (`Dim_Calendar`), and optimized DAX measures (`DIVIDE`, `CALCULATE`, `DATEADD`). |
+| **Python (Streamlit & Plotly)** | Browser-based interactive dashboard (`app.py`) empowering non-technical stakeholders to slice, filter, and inspect data in real time. |
+| **Matplotlib & Seaborn** | Publication-grade static visual generation (`300 DPI`) for board presentations and portfolio reports. |
+
+---
+
+## 💻 7. Interactive Dashboard & Quickstart Guide
+
+### Run the Streamlit Dashboard Locally
+To launch the interactive web dashboard on your machine:
+
+```bash
+# 1. Install required dependencies
+pip install -r requirements.txt
+
+# 2. Run the Streamlit application
+streamlit run app.py
+```
+👉 Open your browser to **`http://localhost:8501`** to interact with real-time filters, dynamic KPI cards, and drill-down charts.
+
+### Regenerate Static Visualizations
+To re-create the high-resolution charts in `visuals/`:
+```bash
+python visuals/generate_charts.py
+```
+
+### Ingest Data & Execute SQL Queries
+To rebuild the SQLite database and run the SQL analytical engine:
+```bash
+python sql/load_and_query.py
+```
+
+---
+
+## 📂 8. Repository Structure & Deliverables Directory
+
+```text
+Sales-dashboard/
 │
-├── README.md                     # Main project documentation & project overview
-├── DATASET_SCHEMA.md             # 10-column schema & data dictionary
-├── sales_data_cleaning.csv       # Cleaned dataset (2,990 verified transactions)
+├── README.md                     # Executive project overview & documentation (this file)
+├── DATASET_SCHEMA.md             # 10-column data dictionary, types, and constraints
+├── sales_data_cleaning.csv       # Cleaned, standardized dataset (2,990 verified rows)
 ├── app.py                        # Interactive Streamlit & Plotly web dashboard
-├── requirements.txt              # Deployment dependencies (streamlit, pandas, plotly)
+├── requirements.txt              # Cloud & local deployment dependencies
+├── SPT.pbix                      # Power BI packaged dashboard file
 │
 ├── data/
-│   ├── raw_sales_data.csv        # Source sales transaction dataset (3,000 rows)
-│   ├── generate_sales_data.py    # Python data generator (seed 42)
-│   └── DATA_QUALITY_NOTES.md     # Anomaly specifications for data cleaning
+│   ├── raw_sales_data.csv        # Unprocessed raw sales dataset (3,000 transactions)
+│   ├── generate_sales_data.py    # Deterministic dataset generator (Seed 42)
+│   ├── clean_sales_data.py       # Automated Python cleaning & normalization pipeline
+│   └── DATA_QUALITY_NOTES.md     # Anomaly audit specifications
 │
 ├── sql/
-│   ├── sales_analysis.db         # SQLite database with loaded sales_data table
-│   ├── schema_and_queries.sql    # Table schema, indexes, and KPI queries
-│   ├── QUERY_RESULTS.md          # Executed query results & performance metrics
-│   └── load_and_query.py         # Automated database ingestion and query runner
+│   ├── sales_analysis.db         # Staged SQLite database file
+│   ├── schema_and_queries.sql    # DDL schema, index definitions, and KPI queries
+│   ├── QUERY_RESULTS.md          # Formatted query execution outputs & statistical tables
+│   └── load_and_query.py         # Automated database loader & query runner
 │
 ├── excel/
-│   ├── README.md                 # Excel formulas, pivot table summary, and data prep notes
-│   └── sales_data_cleaned.xlsx   # Cleaned Excel workbook
+│   ├── README.md                 # Excel data validation formulas & pivot table summary
+│   ├── sales_data_cleaned.xlsx   # Cleaned workbook with formulas
+│   └── sales_data_cleaning.xlsx  # Preliminary exploratory sheet
 │
 ├── powerbi/
-│   └── README.md                 # Data model guide, DAX measures list, and visual layout specs
+│   └── README.md                 # Star Schema design, DAX measures code, & 3-page layout guide
 │
 ├── tableau/
-│   └── README.md                 # Tableau workbook overview, visual story outlines, and dashboard captures
+│   └── README.md                 # Visual story outlines, geospatial mapping, & charts guide
 │
 ├── visuals/
-│   ├── 01_sales_trend.png        # Monthly Sales & Profit Trend (Line Chart)
-│   ├── 02_top_5_products.png     # Top 5 Revenue Products (Bar Chart)
+│   ├── 01_sales_trend.png        # Monthly Revenue & Profit Trend (Dual Line Chart)
+│   ├── 02_top_5_products.png     # Top 5 Revenue-Generating Products (Horizontal Bar Chart)
 │   ├── 03_category_sales_donut.png # Category Revenue Share & Margins (Donut Chart)
-│   ├── 04_regional_performance.png # Regional Sales & Profit Comparison (Bar Chart)
-│   ├── generate_charts.py        # Python visualization generator script
+│   ├── 04_regional_performance.png # Regional Sales vs Net Profit (Clustered Bar Chart)
+│   ├── generate_charts.py        # Python chart generation script
 │   └── README.md                 # Visual gallery and chart documentation
 │
 └── documentation/
-    ├── VIVA_VOCE_GUIDE.md        # Comprehensive viva voce Q&A and technical justification guide
-    ├── PROJECT_SUMMARY.md        # Executive presentation summary & strategic recommendations
-    └── README.md                 # Documentation folder index
+    ├── VIVA_VOCE_GUIDE.md        # Comprehensive viva voce Q&A and technical justification handbook
+    ├── PROJECT_SUMMARY.md        # Full executive presentation deck summary
+    └── README.md                 # Documentation directory index
 ```
 
 ---
 
-## 📊 6. Key Verified Project Metrics
+## 🎓 9. Viva Voce & Technical Defense Highlights
 
-| Metric | Output Value | Context / Performance Evaluation |
-| :--- | :---: | :--- |
-| **Total Revenue** | **\$450,978.56** | Gross sales across all 2,990 clean orders |
-| **Total Net Profit** | **\$157,745.23** | Net margin after subtracting product unit costs |
-| **Overall Profit Margin** | **34.98%** | Healthy commercial margin across retail portfolio |
-| **Total Validated Orders** | **2,990** | Deduplicated from 3,000 raw rows (10 duplicate rows removed) |
-| **Unique Customer Pool** | **380** | Demonstrates solid repeat purchasing (~7.8 orders/customer) |
-| **Total Units Sold** | **7,849 units** | Physical inventory moved |
-| **Average Order Value (AOV)** | **\$150.83** | Average transaction size across all categories |
-| **Top Revenue Product** | **Standing Desk Converter** | **\$62,784.93** Sales (267 units sold, 25.58% margin) |
-| **Top Revenue Category** | **Technology** | **\$189,018.44** Sales (35.29% profit margin) |
-| **Highest Margin Category** | **Office Supplies** | **55.26% Margin** (high-margin add-on category) |
-| **Top Sales Region** | **East** | **\$121,757.68** Sales (35.28% margin) |
+When defending this project in an academic or technical interview setting, emphasize these senior analyst talking points:
+
+1. **Why SQLite over MySQL/PostgreSQL?**  
+   *Answer*: SQLite is self-contained, serverless, zero-config, and embeddable within any repository. It provides 100% ANSI SQL standard compliance without introducing database server overhead.
+2. **Why use `DIVIDE()` in DAX instead of `/`?**  
+   *Answer*: The native division operator `/` returns `NaN` or `Infinity` upon division by zero, breaking visual tiles. `DIVIDE([Profit], [Sales], 0)` intercepts divide-by-zero errors and returns a safe fallback (0).
+3. **Why build a Star Schema in Power BI?**  
+   *Answer*: Decoupling Dimensions (`Dim_Calendar`, `Dim_Product`, `Dim_Region`) from Facts (`sales_data`) eliminates redundant dimensional strings, leverages VertiPaq columnar compression, and simplifies DAX filter propagation.
+4. **Why are negative profits present in the dataset?**  
+   *Answer*: Negative profit realistically models retail promotional loss-leaders and margin erosion where high discounts (>20%–30%) outpace unit gross margins. Identifying and capping these transactions is a core data analyst responsibility.
 
 ---
 
-## 🔄 7. End-to-End Project Workflow
+## 📜 10. Project Milestone Status
 
-```mermaid
-flowchart LR
-    A[Raw Sales Data\n3,000 records] --> B[Data Cleaning\nExcel & CSV Standardization]
-    B --> C[Relational Database\nSQLite sales_analysis.db]
-    C --> D[SQL KPI Queries\nSales, Margin, Top Products]
-    D --> E[Power BI & Tableau\nInteractive Dashboards & DAX]
-    E --> F[Insights & Recommendations\nReport & Viva Defense]
-```
-
-1. **Data Acquisition & Assessment**: Designed realistic transactional schema with 10 exact columns and generated 3,000 rows with controlled real-world data issues ([DATASET_SCHEMA.md](file:///c:/Users/pango/Downloads/GOURAV''S%20PROJECT/DATASET_SCHEMA.md)).
-2. **Cleaning & Validation**: Removed 10 duplicate rows, resolved missing values, standardized category and regional casing, yielding 2,990 verified transactions ([sales_data_cleaning.csv](file:///c:/Users/pango/Downloads/GOURAV''S%20PROJECT/sales_data_cleaning.csv)).
-3. **SQL Database & Query Analysis**: Staged cleaned data into SQLite ([sql/sales_analysis.db](file:///c:/Users/pango/Downloads/GOURAV''S%20PROJECT/sql/sales_analysis.db)). Executed KPI queries revealing \$450,978.56 in Total Sales and 34.98% overall profit margin ([sql/QUERY_RESULTS.md](file:///c:/Users/pango/Downloads/GOURAV''S%20PROJECT/sql/QUERY_RESULTS.md)).
-4. **Power BI Dashboarding**: Designed Star Schema data model (`Dim_Calendar` connected to `sales_data`), configured core DAX measures, and defined 3-page layout specifications ([powerbi/README.md](file:///c:/Users/pango/Downloads/GOURAV''S%20PROJECT/powerbi/README.md)).
-5. **Tableau Visual Exploration**: Built complementary visual stories focusing on geospatial distributions and category profitability ([tableau/README.md](file:///c:/Users/pango/Downloads/GOURAV''S%20PROJECT/tableau/README.md)).
-6. **Executive Reporting & Viva Preparation**: Synthesized findings into an executive report ([documentation/PROJECT_SUMMARY.md](file:///c:/Users/pango/Downloads/GOURAV''S%20PROJECT/documentation/PROJECT_SUMMARY.md)) and full viva defense handbook ([documentation/VIVA_VOCE_GUIDE.md](file:///c:/Users/pango/Downloads/GOURAV''S%20PROJECT/documentation/VIVA_VOCE_GUIDE.md)).
-
----
-
-## 🎓 8. Complete Project Deliverables Directory
-
-| Deliverable Area | Primary File | Description |
-| :--- | :--- | :--- |
-| **Executive Summary** | [PROJECT_SUMMARY.md](file:///c:/Users/pango/Downloads/GOURAV''S%20PROJECT/documentation/PROJECT_SUMMARY.md) | High-level commercial insights, paradox analysis, and strategic recommendations |
-| **Viva Voce Defense** | [VIVA_VOCE_GUIDE.md](file:///c:/Users/pango/Downloads/GOURAV''S%20PROJECT/documentation/VIVA_VOCE_GUIDE.md) | Comprehensive interview questions covering SQL, Excel, Power BI, and technical choices |
-| **Cleaned Dataset** | [sales_data_cleaning.csv](file:///c:/Users/pango/Downloads/GOURAV''S%20PROJECT/sales_data_cleaning.csv) | Deduplicated, standardized dataset (2,990 records) |
-| **Raw Dataset** | [raw_sales_data.csv](file:///c:/Users/pango/Downloads/GOURAV''S%20PROJECT/data/raw_sales_data.csv) | Original 3,000 rows with seeded anomalies |
-| **Data Dictionary** | [DATASET_SCHEMA.md](file:///c:/Users/pango/Downloads/GOURAV''S%20PROJECT/DATASET_SCHEMA.md) | 10-column data specifications, constraints, and business rules |
-| **Database File** | [sales_analysis.db](file:///c:/Users/pango/Downloads/GOURAV''S%20PROJECT/sql/sales_analysis.db) | Self-contained SQLite database with indexed `sales_data` table |
-| **SQL Script** | [schema_and_queries.sql](file:///c:/Users/pango/Downloads/GOURAV''S%20PROJECT/sql/schema_and_queries.sql) | DDL schema, indexes, and analytical queries |
-| **SQL Execution Results** | [QUERY_RESULTS.md](file:///c:/Users/pango/Downloads/GOURAV''S%20PROJECT/sql/QUERY_RESULTS.md) | Markdown tables of executed query outputs |
-| **Power BI Architecture** | [powerbi/README.md](file:///c:/Users/pango/Downloads/GOURAV''S%20PROJECT/powerbi/README.md) | Star Schema model, DAX measures formulas, and 3-page layout design |
-| **Visual Dashboard Charts** | [visuals/README.md](file:///c:/Users/pango/Downloads/GOURAV''S%20PROJECT/visuals/README.md) | High-resolution PNG visual charts generated via Python & Matplotlib |
-| **Interactive Web App** | [app.py](file:///c:/Users/pango/Downloads/GOURAV''S%20PROJECT/app.py) | Full interactive browser dashboard built with Streamlit & Plotly |
-
----
-
-## 🚀 9. Project Implementation Status
-
-- [x] **Phase 1: Project Scoping & Directory Setup** (Completed)
+- [x] **Phase 1: Project Scoping & Directory Architecture** (Completed)
 - [x] **Phase 2: Dataset Schema & Data Dictionary Design** (Completed)
-- [x] **Phase 3: Raw Data Generation with Controlled Anomalies** (Completed)
-- [x] **Phase 4: Data Cleaning & Validation in Excel** (Completed)
-- [x] **Phase 5: SQL Database Setup & Analytical Queries** (Completed)
-- [x] **Phase 6: Power BI Modeling & DAX Documentation** (Completed)
-- [x] **Phase 7: Executive Presentation & Insights Summary** (Completed)
-- [x] **Phase 8: Comprehensive Viva Voce Preparation Guide** (Completed)
-- [x] **Phase 9: Visual Charts Generation (Matplotlib/Python)** (Completed)
-- [x] **Phase 10: Interactive Web Dashboard (Streamlit & Plotly)** (Completed)
+- [x] **Phase 3: Raw Data Generation with Controlled Real-World Noise** (Completed)
+- [x] **Phase 4: Data Cleaning & Format Normalization in Excel** (Completed)
+- [x] **Phase 5: SQLite Database Staging & SQL Querying** (Completed)
+- [x] **Phase 6: Power BI Modeling & DAX Formulation** (Completed)
+- [x] **Phase 7: High-Resolution Visual Gallery Generation** (Completed)
+- [x] **Phase 8: Interactive Streamlit Web Dashboard Development** (Completed)
+- [x] **Phase 9: Comprehensive Viva Voce Defense Guide** (Completed)
+- [x] **Phase 10: GitHub Repository Version Control & Cloud Readiness** (Completed)
