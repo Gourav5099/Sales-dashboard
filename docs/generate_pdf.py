@@ -40,7 +40,7 @@ def build_html_document(md_text):
     processed_md = processed_md.replace(r"\newpage", '<div class="page-break"></div>')
     
     # Replace each Chapter 1..11 and Bibliography / Appendices with a page-break before it
-    chapter_pattern = r"(^# (?:CHAPTER \d+|TABLE OF CONTENTS|PRELIMINARY PAGES|BIBLIOGRAPHY|APPENDICES|APPENDIX [A-F]).*?$)"
+    chapter_pattern = r"(^#+ (?:CHAPTER \d+|TABLE OF CONTENTS|PRELIMINARY PAGES|BIBLIOGRAPHY|APPENDICES|APPENDIX [A-H]|PART [A-B]).*?$)"
     processed_md = re.sub(chapter_pattern, r'<div class="page-break"></div>\n\n\1', processed_md, flags=re.MULTILINE)
     
     # Insert visual images where relevant figures are discussed in Chapter 7

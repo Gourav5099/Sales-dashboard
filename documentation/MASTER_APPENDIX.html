@@ -380,6 +380,274 @@
 <li><strong>SDG 12 (Responsible Consumption &amp; Production - Target 12.6)</strong>: Optimizes stock procurement, mitigates overproduction, and curtails warehouse inventory waste.</li>
 </ul>
 <hr />
+<hr />
+<div class="page-break"></div>
+
+<h1 id="part-a-software-and-tools-used">PART A: SOFTWARE AND TOOLS USED</h1>
+<p>This appendix outlines the complete hardware, operating system, application software, programming runtimes, libraries, and development tools utilized across the design, engineering, execution, and presentation phases of the <strong>Sales &amp; Business Performance Analysis</strong> project.</p>
+<h3 id="a1-hardware-operating-system-specifications">A.1 Hardware &amp; Operating System Specifications</h3>
+<ul>
+<li><strong>Host Operating System</strong>: Microsoft Windows 11 Home / Professional (64-bit Architecture, x64-based processor).</li>
+<li><strong>Processor</strong>: Intel Core i5 / i7 (or AMD Ryzen equivalent) with multi-threading support.</li>
+<li><strong>System Memory (RAM)</strong>: 16.0 GB DDR4/DDR5 high-bandwidth memory (supporting in-memory Power BI VertiPaq tabular caching and Streamlit local server execution).</li>
+<li><strong>Secondary Storage</strong>: High-speed NVMe Solid State Drive (SSD) with &gt;= 5.0 GB dedicated storage for repository assets, database staging, and visualization artifacts.</li>
+</ul>
+<h3 id="a2-core-software-applications-analytical-platforms">A.2 Core Software Applications &amp; Analytical Platforms</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Software / Platform</th>
+<th style="text-align: left;">Vendor / Organization</th>
+<th style="text-align: center;">Version</th>
+<th style="text-align: left;">Operational Function &amp; Implementation Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Microsoft Excel</strong></td>
+<td style="text-align: left;">Microsoft Corporation</td>
+<td style="text-align: center;">Office 365 / 2021</td>
+<td style="text-align: left;">Preliminary exploratory data auditing, sanity checking, conditional formatting rules, duplicate identification, and Pivot Table validation.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>SQLite Database Engine</strong></td>
+<td style="text-align: left;">SQLite Development Team</td>
+<td style="text-align: center;">3.45.1+</td>
+<td style="text-align: left;">Serverless, zero-configuration relational database staging (<code>sql/sales_analysis.db</code>). Implemented with B-Tree indexes on categorical and temporal fields for ANSI SQL query execution.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Microsoft Power BI Desktop</strong></td>
+<td style="text-align: left;">Microsoft Corporation</td>
+<td style="text-align: center;">2.128.0+</td>
+<td style="text-align: left;">Enterprise dimensional modeling (Star Schema), VertiPaq columnar compression, dynamic DAX calculation engine, and 3-page interactive visual dashboard creation.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tableau Desktop / Public</strong></td>
+<td style="text-align: left;">Salesforce, Inc.</td>
+<td style="text-align: center;">2024.1+</td>
+<td style="text-align: left;">VizQL visual analytics, multi-dimensional exploratory data analysis, dual-axis margin comparison charts, and visual storytelling.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Visual Studio Code (VS Code)</strong></td>
+<td style="text-align: left;">Microsoft Corporation</td>
+<td style="text-align: center;">1.90.0+</td>
+<td style="text-align: left;">Primary Integrated Development Environment (IDE) for Python scripting, SQL query editing, Git branch management, and markdown report drafting.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Google Chrome / Edge</strong></td>
+<td style="text-align: left;">Google LLC / Microsoft Corp</td>
+<td style="text-align: center;">128.0+</td>
+<td style="text-align: left;">Modern web browser interface for testing local Streamlit reactive apps (<code>localhost:8501</code>) and headless Chromium PDF report generation engine.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="a3-programming-languages-runtimes-dependency-libraries">A.3 Programming Languages, Runtimes &amp; Dependency Libraries</h3>
+<ul>
+<li><strong>Primary Language &amp; Runtime</strong>: <strong>Python 3.13.x (64-bit)</strong>.</li>
+<li><strong>Dependency Specification (<code>requirements.txt</code>)</strong>:</li>
+<li><code>streamlit&gt;=1.30.0</code>: High-performance reactive web framework providing sidebar filters, dynamic KPI metric cards, and responsive session state management.</li>
+<li><code>pandas&gt;=2.0.0</code>: Fast in-memory tabular data manipulation, vectorized arithmetic, datetime parsing, GroupBy aggregations, and CSV I/O handling.</li>
+<li><code>plotly&gt;=5.18.0</code>: Interactive JavaScript-backed declarative charting engine rendering interactive tooltips, hover highlights, and zoomable visual layouts.</li>
+<li><code>matplotlib&gt;=3.8.0</code>: Foundational 2D visualization library used to construct 300 DPI publication-grade static figures (<code>visuals/generate_charts.py</code>).</li>
+<li><code>markdown&gt;=3.10.0</code> &amp; <code>pygments&gt;=2.21.0</code>: Text-to-HTML parser and syntax highlighting engine used to automate academic report compilation.</li>
+</ul>
+<h3 id="a4-version-control-collaboration-staging-environment">A.4 Version Control, Collaboration &amp; Staging Environment</h3>
+<ul>
+<li><strong>Git</strong>: Version 2.44+ distributed source control system managing branch tracking, semantic commit history, and code lineage.</li>
+<li><strong>GitHub</strong>: Cloud repository hosting platform (<code>https://github.com/Gourav5099/Sales-dashboard</code>) facilitating public portfolio sharing, cloud CI/CD integration, and one-click Streamlit Community Cloud deployment.</li>
+<li><strong>Streamlit Community Cloud</strong>: Cloud serverless hosting platform deploying <code>app.py</code> for permanent global web access.</li>
+</ul>
+<h3 id="a5-cross-platform-capability-comparative-tool-matrix">A.5 Cross-Platform Capability &amp; Comparative Tool Matrix</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Operational Feature</th>
+<th style="text-align: center;">Microsoft Excel</th>
+<th style="text-align: center;">SQLite RDBMS</th>
+<th style="text-align: center;">Microsoft Power BI</th>
+<th style="text-align: center;">Tableau Desktop</th>
+<th style="text-align: center;">Python (Streamlit + Plotly)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Data Scalability Limit</strong></td>
+<td style="text-align: center;">1,048,576 rows</td>
+<td style="text-align: center;">Terabytes (disk)</td>
+<td style="text-align: center;">High (In-memory compressed)</td>
+<td style="text-align: center;">High (Hyper extract engine)</td>
+<td style="text-align: center;">High (RAM bound / Chunked)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Analytical Language</strong></td>
+<td style="text-align: center;">Spreadsheet formulas</td>
+<td style="text-align: center;">ANSI SQL</td>
+<td style="text-align: center;">DAX &amp; Power Query M</td>
+<td style="text-align: center;">VizQL / Calculated Fields</td>
+<td style="text-align: center;">Python / Pandas vectorized</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Interactivity Level</strong></td>
+<td style="text-align: center;">Medium (Slicers)</td>
+<td style="text-align: center;">None (CLI / Text)</td>
+<td style="text-align: center;">Very High (Cross-filtering)</td>
+<td style="text-align: center;">Very High (Actions/Filters)</td>
+<td style="text-align: center;">High (Reactive Python state)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Automated Scripting</strong></td>
+<td style="text-align: center;">Low (VBA/Macros)</td>
+<td style="text-align: center;">High (SQL scripts)</td>
+<td style="text-align: center;">Medium (Scheduled refresh)</td>
+<td style="text-align: center;">Medium (Tableau Prep)</td>
+<td style="text-align: center;">Full (Automated CLI/APIs)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Licensing / Cost</strong></td>
+<td style="text-align: center;">Paid Commercial</td>
+<td style="text-align: center;">100% Free / Open Source</td>
+<td style="text-align: center;">Free Desktop / Paid Pro</td>
+<td style="text-align: center;">Paid Commercial</td>
+<td style="text-align: center;">100% Free / Open Source</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div class="page-break"></div>
+
+<h1 id="part-b-project-modules-architectural-breakdown">PART B: PROJECT MODULES &amp; ARCHITECTURAL BREAKDOWN</h1>
+<p>The <strong>Sales &amp; Business Performance Analysis</strong> system is architected as an end-to-end, six-tier modular pipeline. Each module encapsulates distinct business logic, input criteria, transformation rules, and output deliverables:</p>
+<pre><code class="language-text">+--------------------------------------------------------------------------------------------------+
+|                         END-TO-END PROJECT MODULAR ARCHITECTURE                                  |
++--------------------------------------------------------------------------------------------------+
+|  [MODULE 1: Synthetic Data Generation Engine]                                                    |
+|  Script: data/generate_sales_data.py | Ingests config -&gt; Generates 3,000 raw transactional rows  |
+|  Seeded Anomalies: 10 exact duplicates, 10 nulls, 15 text casing defects, whitespace errors      |
++--------------------------------------------------------------------------------------------------+
+|                                                |                                                 |
+|                                                v                                                 |
+|  [MODULE 2: Data Cleansing, Hygiene &amp; Transformation Engine]                                     |
+|  Script / Pipeline: sales_data_cleaning.csv                                                      |
+|  Processes: Deduplication (2,990 clean rows), Deterministic formula imputation, Title Casing     |
++--------------------------------------------------------------------------------------------------+
+|                                                |                                                 |
+|                                                v                                                 |
+|  [MODULE 3: Relational Database Staging &amp; SQL Analytical Execution Engine]                       |
+|  Database: sql/sales_analysis.db | Schema: sales_data with B-Tree Indexes                        |
+|  Queries: 5 Core Analytical SQL scripts (KPIs, Top 5 SKUs, Category x Region, Summaries)        |
++--------------------------------------------------------------------------------------------------+
+|                                                |                                                 |
+|                                                v                                                 |
+|  [MODULE 4: Dimensional Modeling &amp; Power BI Intelligence Engine]                                 |
+|  Workbook: SPT.pbix | Star Schema Model: Fact_Sales (2,990 rows) &lt;--- (N:1) ---&gt; Dim_Calendar   |
+|  DAX Measure Library: Total Sales, Net Profit, Margin %, Sales SPLY, YoY Growth %, 3-Page Canvas |
++--------------------------------------------------------------------------------------------------+
+|                                                |                                                 |
+|                                                v                                                 |
+|  [MODULE 5: Interactive Web Application &amp; Dashboard Deployment Engine]                           |
+|  Script: app.py (Streamlit + Plotly) | Reactive state loop, @st.cache_data in-memory loading    |
+|  Components: Dynamic Date Slider, Region/Category Slicers, 4 Interactive Charts, CSV Exporter    |
++--------------------------------------------------------------------------------------------------+
+|                                                |                                                 |
+|                                                v                                                 |
+|  [MODULE 6: Publication-Grade Static Charting &amp; Automated PDF Engine]                            |
+|  Scripts: visuals/generate_charts.py &amp; docs/generate_pdf.py                                      |
+|  Artifacts: 4x 300 DPI Matplotlib PNGs, 106-page PDF Report, 13-page Master Appendix Compendium  |
++--------------------------------------------------------------------------------------------------+
+</code></pre>
+<h3 id="b1-module-1-synthetic-data-generation-controlled-anomaly-engine">B.1 Module 1: Synthetic Data Generation &amp; Controlled Anomaly Engine</h3>
+<ul>
+<li><strong>Source Component</strong>: <code>data/generate_sales_data.py</code></li>
+<li><strong>Input Parameters</strong>: Configuration parameters (Seed: 42, Row count: 3,000, Start date: <code>2023-01-01</code>, End date: <code>2024-12-31</code>).</li>
+<li><strong>Functional Operation</strong>:
+  1. Procedurally generates realistic commercial retail transaction records across 27 distinct product SKUs, 4 categories, and 4 geographic regions.
+  2. Injects controlled data quality anomalies to mirror real-world point-of-sale defects:<ul>
+<li>Exact duplicate records (10 rows) simulating network re-submission retries.</li>
+<li>Null/blank fields (10 rows) across Sales, Profit, Discount, Category, and Region.</li>
+<li>Case mismatches (e.g., <code>technology</code>, <code>north</code>) and trailing whitespace (e.g., <code>'Furniture '</code>).</li>
+</ul>
+</li>
+<li><strong>Output Deliverable</strong>: <code>data/raw_sales_data.csv</code> (3,000 rows, 10 columns) and <code>data/DATA_QUALITY_NOTES.md</code>.</li>
+</ul>
+<h3 id="b2-module-2-data-cleansing-hygiene-transformation-engine">B.2 Module 2: Data Cleansing, Hygiene &amp; Transformation Engine</h3>
+<ul>
+<li><strong>Source Component</strong>: Excel Audit &amp; Python Data Cleansing Workflow</li>
+<li><strong>Input</strong>: <code>data/raw_sales_data.csv</code> (3,000 rows)</li>
+<li><strong>Functional Operation</strong>:
+  1. <strong>Deduplication</strong>: Audits primary key <code>Order_ID</code> and drops exactly 10 duplicate rows, yielding 2,990 unique transactions.
+  2. <strong>Deterministic Imputation</strong>: Rather than inserting artificial column means, missing financial fields are mathematically re-derived:<ul>
+<li>Sales = Quantity * Base Price * (1 - Discount)</li>
+<li>Profit = Sales - (Quantity * Wholesale Cost)</li>
+<li>Discount = ((Qty * Price) - Sales) / (Qty * Price)
+  3. <strong>Categorical Normalization</strong>: Applies <code>TRIM()</code> and <code>PROPER()</code> transformations to sanitize categories and regions into uniform Title Case.</li>
+</ul>
+</li>
+<li><strong>Output Deliverable</strong>: <code>sales_data_cleaning.csv</code> (2,990 clean, fully populated records).</li>
+</ul>
+<h3 id="b3-module-3-relational-database-staging-sql-analytical-execution-engine">B.3 Module 3: Relational Database Staging &amp; SQL Analytical Execution Engine</h3>
+<ul>
+<li><strong>Source Component</strong>: <code>sql/sales_analysis.db</code> and <code>sql/schema_and_queries.sql</code></li>
+<li><strong>Input</strong>: <code>sales_data_cleaning.csv</code></li>
+<li><strong>Functional Operation</strong>:
+  1. <strong>Schema Initialization</strong>: Constructs table <code>sales_data</code> with strict type constraints (<code>INTEGER</code>, <code>REAL</code>, <code>DATE</code>, <code>VARCHAR</code>).
+  2. <strong>Indexing</strong>: Creates B-Tree indexes on <code>Category</code>, <code>Region</code>, <code>Order_Date</code>, and <code>Product</code> to achieve O(log N) query performance.
+  3. <strong>Analytical Query Suite</strong>:<ul>
+<li><em>Query 1</em>: Aggregates high-level enterprise metrics ($450,978.56 sales, $157,745.23 profit, 34.98% margin).</li>
+<li><em>Query 2</em>: Ranks Top 5 revenue-generating products using <code>ORDER BY Total_Sales DESC LIMIT 5</code>.</li>
+<li><em>Query 3</em>: Computes multi-dimensional Category x Region cross-tabulation.</li>
+<li><em>Query 4</em>: Analyzes merchandise category volume versus profitability.</li>
+<li><em>Query 5</em>: Evaluates regional revenue and margin distribution.</li>
+</ul>
+</li>
+<li><strong>Output Deliverables</strong>: <code>sql/sales_analysis.db</code> and <code>sql/QUERY_RESULTS.md</code>.</li>
+</ul>
+<h3 id="b4-module-4-dimensional-modeling-power-bi-intelligence-engine">B.4 Module 4: Dimensional Modeling &amp; Power BI Intelligence Engine</h3>
+<ul>
+<li><strong>Source Component</strong>: <code>SPT.pbix</code></li>
+<li><strong>Input</strong>: Cleaned transactional table staged from SQLite / CSV.</li>
+<li><strong>Functional Operation</strong>:
+  1. <strong>Star Schema Architecture</strong>: Decouples transactional facts into <code>Fact_Sales</code> and temporal dimensional attributes into <code>Dim_Calendar</code> (731 dates from 2023 to 2024).
+  2. <strong>Relationship</strong>: Configures a 1-to-Many single-directional relationship: <code>Dim_Calendar[DateKey]</code> -&gt; <code>Fact_Sales[Order_Date]</code>.
+  3. <strong>DAX Measure Library</strong>: Authors explicit DAX measures for financial base values (<code>[Total Sales]</code>, <code>[Total Profit]</code>, <code>[Overall Margin %]</code>), transaction KPIs (<code>[Total Orders]</code>, <code>[AOV]</code>), and time intelligence (<code>[Sales YTD]</code>, <code>[Sales SPLY]</code>, <code>[YoY Growth %]</code>).
+  4. <strong>Canvas Design</strong>: Implements a 3-page interactive layout:<ul>
+<li><em>Page 1: Executive Overview</em> (Headline cards, 24-month trend, category donut).</li>
+<li><em>Page 2: Product &amp; Category Deep-Dive</em> (Ranked bar charts, margin matrix).</li>
+<li><em>Page 3: Regional Commercial Diagnostics</em> (Geographic breakdown, customer frequency).</li>
+</ul>
+</li>
+<li><strong>Output Deliverables</strong>: <code>SPT.pbix</code> and <code>powerbi/README.md</code>.</li>
+</ul>
+<h3 id="b5-module-5-interactive-web-application-dashboard-deployment-engine">B.5 Module 5: Interactive Web Application &amp; Dashboard Deployment Engine</h3>
+<ul>
+<li><strong>Source Component</strong>: <code>app.py</code></li>
+<li><strong>Framework</strong>: Streamlit 1.63 + Plotly Graph Objects + Pandas</li>
+<li><strong>Functional Operation</strong>:
+  1. <strong>In-Memory Caching</strong>: Leverages <code>@st.cache_data</code> to load <code>sales_data_cleaning.csv</code> once, ensuring sub-50ms reactive filtering upon user input.
+  2. <strong>Responsive Sidebar Controls</strong>: Dynamically populates date sliders, region multi-select dropdowns, and category filters.
+  3. <strong>Visual Layout</strong>:<ul>
+<li>5 Top KPI metric tiles displaying dynamically recalculated Sales, Profit, Margin, Order Count, and AOV.</li>
+<li>Monthly sales trajectory line chart with peak annotation.</li>
+<li>Category revenue share donut chart with center KPI scorecard.</li>
+<li>Top 5 products horizontal bar chart with margin labels.</li>
+<li>Regional sales vs. profit clustered column chart.
+  4. <strong>Self-Service Data Export</strong>: Embeds a collapsible raw data table with one-click CSV download capability.</li>
+</ul>
+</li>
+<li><strong>Output Deliverable</strong>: <code>app.py</code> runnable locally via <code>streamlit run app.py</code> and cloud-deployable on Streamlit Community Cloud.</li>
+</ul>
+<h3 id="b6-module-6-publication-grade-static-charting-automated-pdf-engine">B.6 Module 6: Publication-Grade Static Charting &amp; Automated PDF Engine</h3>
+<ul>
+<li><strong>Source Components</strong>: <code>visuals/generate_charts.py</code> and <code>docs/generate_pdf.py</code></li>
+<li><strong>Functional Operation</strong>:
+  1. <strong>Static Visual Generation</strong>: Connects to <code>sql/sales_analysis.db</code> and utilizes Matplotlib to render four 300 DPI high-resolution PNG charts (<code>01_sales_trend.png</code>, <code>02_top_5_products.png</code>, <code>03_category_sales_donut.png</code>, <code>04_regional_performance.png</code>).
+  2. <strong>Automated PDF Compilation</strong>: Compiles the markdown documentation into styled HTML and invokes headless Google Chrome / Microsoft Edge to produce:<ul>
+<li>Complete formal report (<code>SUMMER_TRAINING_REPORT.pdf</code>).</li>
+<li>Standalone quick-reference compendium (<code>MASTER_APPENDIX.pdf</code>).</li>
+</ul>
+</li>
+<li><strong>Output Deliverables</strong>: <code>visuals/*.png</code>, <code>SUMMER_TRAINING_REPORT.pdf</code>, and <code>MASTER_APPENDIX.pdf</code>.</li>
+</ul>
+<hr />
 <h1 id="section-2-end-to-end-analytics-lifecycle-pipeline">SECTION 2: END-TO-END ANALYTICS LIFECYCLE &amp; PIPELINE</h1>
 <pre><code class="language-text">┌────────────────────────┐      ┌────────────────────────┐      ┌────────────────────────┐
 │   1. RAW DATA (CSV)    │      │  2. DATA CLEANING ETL  │      │  3. RELATIONAL SQL DB  │
