@@ -40,7 +40,7 @@ def build_html_document(md_text):
     processed_md = processed_md.replace(r"\newpage", '<div class="page-break"></div>')
     
     # Replace each Chapter 1..11 and Bibliography / Appendices with a page-break before it
-    chapter_pattern = r"(^# (?:CHAPTER \d+|TABLE OF CONTENTS|PRELIMINARY PAGES|BIBLIOGRAPHY|APPENDICES|APPENDIX [A-E]).*?$)"
+    chapter_pattern = r"(^# (?:CHAPTER \d+|TABLE OF CONTENTS|PRELIMINARY PAGES|BIBLIOGRAPHY|APPENDICES|APPENDIX [A-F]).*?$)"
     processed_md = re.sub(chapter_pattern, r'<div class="page-break"></div>\n\n\1', processed_md, flags=re.MULTILINE)
     
     # Insert visual images where relevant figures are discussed in Chapter 7
@@ -421,5 +421,56 @@ def convert_to_pdf():
     else:
         raise FileNotFoundError(f"PDF file was not found at {PDF_OUTPUT_DOC}")
 
+def convert_master_appendix_to_pdf():
+    appendix_md_path = os.path.join(PROJECT_ROOT, "documentation", "MASTER_APPENDIX.md")
+    appendix_html_path = os.path.join(PROJECT_ROOT, "documentation", "MASTER_APPENDIX.html")
+    appendix_pdf_doc = os.path.join(PROJECT_ROOT, "documentation", "MASTER_APPENDIX.pdf")
+    appendix_pdf_docs = os.path.join(PROJECT_ROOT, "docs", "MASTER_APPENDIX.pdf")
+    appendix_pdf_root = os.path.join(PROJECT_ROOT, "MASTER_APPENDIX.pdf")
+
+    print(f"\nReading {appendix_md_path}...")
+    with open(appendix_md_path, "r", encoding="utf-8") as f:
+        md_content = f.read()
+
+    html_content = build_html_document(md_content)
+    with open(appendix_html_path, "w", encoding="utf-8") as f:
+        f.write(html_content)
+    
+    # Copy html to docs
+    import shutil
+    shutil.copyfile(appendix_html_path, os.path.join(PROJECT_ROOT, "docs", "MASTER_APPENDIX.html"))
+
+    browser_exe = None
+    for p in CHROME_PATHS:
+        if os.path.exists(p):
+            browser_exe = p
+            break
+
+    if not browser_exe:
+        raise RuntimeError("Browser not found.")
+
+    cmd = [
+        browser_exe,
+        "--headless",
+        "--disable-gpu",
+        "--no-pdf-header-footer",
+        "--generate-pdf-document-outline",
+        "--virtual-time-budget=5000",
+        f"--print-to-pdf={appendix_pdf_doc}",
+        appendix_html_path
+    ]
+
+    subprocess.run(cmd, capture_output=True, text=True)
+    if os.path.exists(appendix_pdf_doc):
+        shutil.copyfile(appendix_pdf_doc, appendix_pdf_docs)
+        shutil.copyfile(appendix_pdf_doc, appendix_pdf_root)
+        with open(appendix_pdf_doc, "rb") as f:
+            pages = len(re.findall(rb"/Type\s*/Page\b", f.read()))
+        size = os.path.getsize(appendix_pdf_doc)
+        print(f"Successfully generated MASTER_APPENDIX.pdf ({pages} pages, {size:,} bytes)")
+        return pages, size
+
 if __name__ == "__main__":
     convert_to_pdf()
+    convert_master_appendix_to_pdf()
+

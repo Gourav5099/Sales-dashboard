@@ -5,10 +5,8 @@ __pycache__/
 
 # Temporary office files
 ~$*
-
-# OS artifacts
-.DS_Store
-Thumbs.db
+~*
+*.tmp
 
 # Archives
 *.zip

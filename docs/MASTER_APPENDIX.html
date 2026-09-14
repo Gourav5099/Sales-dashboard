@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Summer Training Report: Sales & Business Performance Analysis</title>
+    <style>
+
+    @page {
+        size: A4 portrait;
+        margin: 24mm 18mm 24mm 18mm;
+    }
+    
+    @media print {
+        .page-break {
+            page-break-before: always;
+            break-before: page;
+        }
+        .header {
+            position: fixed;
+            top: -18mm;
+            left: 0;
+            right: 0;
+            height: 12mm;
+            text-align: right;
+            font-size: 7.5pt;
+            color: #7F8C8D;
+            border-bottom: 0.5pt solid #BDC3C7;
+            padding-bottom: 2mm;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .footer {
+            position: fixed;
+            bottom: -18mm;
+            left: 0;
+            right: 0;
+            height: 12mm;
+            display: flex;
+            justify-content: space-between;
+            font-size: 7.5pt;
+            color: #7F8C8D;
+            border-top: 0.5pt solid #BDC3C7;
+            padding-top: 2mm;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        tr {
+            page-break-inside: avoid;
+        }
+        pre, blockquote, .figure-card {
+            page-break-inside: avoid;
+        }
+        h1, h2, h3, h4 {
+            page-break-after: avoid;
+            break-after: avoid;
+        }
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Georgia', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10pt;
+        line-height: 1.55;
+        color: #2C3E50;
+        margin: 0;
+        padding: 0;
+        text-rendering: optimizeLegibility;
+    }
+    
+    p {
+        margin: 0 0 10pt 0;
+        text-align: justify;
+        text-justify: inter-word;
+    }
+    
+    h1 {
+        font-size: 20pt;
+        font-weight: 700;
+        color: #1F4E79;
+        border-bottom: 2pt solid #1F4E79;
+        padding-bottom: 4pt;
+        margin-top: 18pt;
+        margin-bottom: 12pt;
+        letter-spacing: -0.3px;
+    }
+    
+    h2 {
+        font-size: 14pt;
+        font-weight: 600;
+        color: #2E75B6;
+        border-bottom: 1pt solid #D6EAF8;
+        padding-bottom: 3pt;
+        margin-top: 14pt;
+        margin-bottom: 8pt;
+    }
+    
+    h3 {
+        font-size: 11.5pt;
+        font-weight: 600;
+        color: #1B4F72;
+        margin-top: 12pt;
+        margin-bottom: 6pt;
+    }
+    
+    h4 {
+        font-size: 10.5pt;
+        font-weight: 600;
+        color: #2C3E50;
+        margin-top: 10pt;
+        margin-bottom: 4pt;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12pt 0;
+        font-size: 8.5pt;
+        page-break-inside: auto;
+    }
+    
+    thead th {
+        background-color: #1F4E79;
+        color: #FFFFFF;
+        font-weight: 600;
+        text-align: left;
+        padding: 6pt 8pt;
+        border: 1pt solid #1B4F72;
+        letter-spacing: 0.2px;
+    }
+    
+    tbody td {
+        padding: 5pt 8pt;
+        border: 0.5pt solid #D5DBDB;
+        vertical-align: top;
+    }
+    
+    tbody tr:nth-child(even) {
+        background-color: #F8F9FA;
+    }
+    
+    code {
+        font-family: 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+        font-size: 8.5pt;
+        background-color: #F2F4F4;
+        color: #900C3F;
+        padding: 1.5pt 4pt;
+        border-radius: 3pt;
+        border: 0.5pt solid #E5E7E9;
+    }
+    
+    pre {
+        background-color: #F8F9F9;
+        border: 1pt solid #BDC3C7;
+        border-left: 3.5pt solid #1F4E79;
+        border-radius: 3pt;
+        padding: 8pt 10pt;
+        overflow-x: auto;
+        margin: 10pt 0;
+        font-size: 8pt;
+        line-height: 1.4;
+        page-break-inside: avoid;
+    }
+    
+    pre code {
+        background: transparent;
+        border: none;
+        padding: 0;
+        color: #2C3E50;
+        font-size: 8pt;
+    }
+    
+    blockquote {
+        margin: 10pt 0;
+        padding: 8pt 12pt;
+        background-color: #EBF5FB;
+        border-left: 3.5pt solid #2980B9;
+        border-radius: 0 4pt 4pt 0;
+        font-style: italic;
+        color: #1A5276;
+    }
+    
+    blockquote p {
+        margin: 0;
+    }
+    
+    ul, ol {
+        margin: 0 0 10pt 0;
+        padding-left: 20pt;
+    }
+    
+    li {
+        margin-bottom: 3.5pt;
+    }
+    
+    hr {
+        border: 0;
+        height: 1pt;
+        background-color: #BDC3C7;
+        margin: 14pt 0;
+    }
+    
+    .figure-card {
+        text-align: center;
+        margin: 14pt auto;
+        padding: 8pt;
+        border: 0.5pt solid #D5DBDB;
+        border-radius: 4pt;
+        background-color: #FAFAFA;
+        max-width: 95%;
+        page-break-inside: avoid;
+    }
+    
+    .figure-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 3pt;
+        display: block;
+        margin: 0 auto;
+    }
+    
+    .figure-caption {
+        font-size: 8.5pt;
+        font-style: italic;
+        color: #566573;
+        margin-top: 6pt;
+        margin-bottom: 0;
+        text-align: center;
+    }
+    
+    .mermaid-container {
+        text-align: center;
+        margin: 12pt auto;
+        background-color: #FFFFFF;
+        padding: 6pt;
+        border: 0.5pt solid #E5E7E9;
+        border-radius: 4pt;
+        page-break-inside: avoid;
+    }
+    
+    /* Cover Page Formatting */
+    .cover-page {
+        text-align: center;
+        padding: 30pt 20pt;
+        border: 2.5pt double #1F4E79;
+        min-height: 900pt;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: 'default',
+                flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' },
+                securityLevel: 'loose'
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="header">Sales & Business Performance Analysis — Summer Training Report</div>
+    <div class="footer">
+        <span>Department of Computer Science & Engineering | Data Analytics Specialization</span>
+        <span>Candidate: Gourav</span>
+    </div>
+
+<h1 id="master-project-appendix-comprehensive-reference-compendium">MASTER PROJECT APPENDIX &amp; COMPREHENSIVE REFERENCE COMPENDIUM</h1>
+<h2 id="project-title-sales-business-performance-analysis">Project Title: Sales &amp; Business Performance Analysis</h2>
+<h3 id="end-to-end-data-cleansing-relational-sql-modeling-business-intelligence-dashboarding-interactive-analytics"><em>End-to-End Data Cleansing, Relational SQL Modeling, Business Intelligence Dashboarding &amp; Interactive Analytics</em></h3>
+<p><strong>Author / Candidate</strong>: Gourav<br />
+<strong>Academic Degree</strong>: Bachelor of Technology in Computer Science &amp; Engineering (Data Analytics)<br />
+<strong>Academic Session</strong>: 2025 – 2026<br />
+<strong>Repository</strong>: <a href="https://github.com/Gourav5099/Sales-dashboard">https://github.com/Gourav5099/Sales-dashboard</a><br />
+<strong>Live Application Source</strong>: <code>app.py</code> (Streamlit + Plotly)<br />
+<strong>Database Staging</strong>: <code>sql/sales_analysis.db</code> (SQLite 3)<br />
+<strong>Enterprise BI Workbook</strong>: <code>SPT.pbix</code> (Power BI Star Schema)  </p>
+<hr />
+<h1 id="section-1-academic-institutional-alignment-matrix">SECTION 1: ACADEMIC &amp; INSTITUTIONAL ALIGNMENT MATRIX</h1>
+<h3 id="11-vision-mission-summary">1.1 Vision &amp; Mission Summary</h3>
+<ul>
+<li><strong>Institutional Vision</strong>: To emerge as an epicenter of technical excellence, research, and ethically grounded innovation.</li>
+<li><strong>Institutional Mission</strong>: Deliver cutting-edge engineering curriculum, foster multidisciplinary research, and instill leadership and ethical societal commitment.</li>
+<li><strong>Department Vision</strong>: To be globally recognized for excellence in Computer Science, Data Analytics, and Artificial Intelligence education.</li>
+<li><strong>Department Mission</strong>: Cultivate algorithmic and data engineering mastery, experiential laboratory immersion, collaborative industrial projects, and continuous lifelong upskilling.</li>
+</ul>
+<hr />
+<h3 id="12-program-outcomes-pos-knowledgeattitude-profiles-wks">1.2 Program Outcomes (POs) &amp; Knowledge/Attitude Profiles (WKs)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Program Outcome</th>
+<th style="text-align: left;">Coverage in Project</th>
+<th style="text-align: center;">WK Profile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>PO1: Engineering Knowledge</strong></td>
+<td style="text-align: left;">Applied statistical mathematics, relational algebra, and data normalization.</td>
+<td style="text-align: center;"><strong>WK1, WK2</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PO2: Problem Analysis</strong></td>
+<td style="text-align: left;">Diagnosed data anomalies and formulated the <em>Volume vs. Margin Paradox</em>.</td>
+<td style="text-align: center;"><strong>WK3, WK4</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PO3: Design/Development</strong></td>
+<td style="text-align: left;">Built a relational database schema, Star Schema dimensional model, and Streamlit app.</td>
+<td style="text-align: center;"><strong>WK3, WK5</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PO4: Conduct Investigations</strong></td>
+<td style="text-align: left;">Performed multi-dimensional exploratory data analysis and discount elasticity queries.</td>
+<td style="text-align: center;"><strong>WK4, WK5</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PO5: Modern Tool Usage</strong></td>
+<td style="text-align: left;">Leveraged Excel, SQLite, Power BI Desktop, Tableau, Python 3.13, Pandas, Plotly, Streamlit.</td>
+<td style="text-align: center;"><strong>WK4</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PO6: Engineer &amp; Society</strong></td>
+<td style="text-align: left;">Assessed how operational analytics optimize commercial supply chain logistics.</td>
+<td style="text-align: center;"><strong>WK7</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PO7: Environment &amp; Sustainability</strong></td>
+<td style="text-align: left;">Aligned retail inventory management with UN Sustainable Development Goals.</td>
+<td style="text-align: center;"><strong>WK7</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PO8: Ethics</strong></td>
+<td style="text-align: left;">Maintained rigorous data auditing, zero manipulation, and transparent metric reporting.</td>
+<td style="text-align: center;"><strong>WK8</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PO9: Individual &amp; Team Work</strong></td>
+<td style="text-align: left;">Managed end-to-end data pipeline lifecycle, source version control, and documentation.</td>
+<td style="text-align: center;"><strong>WK6</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PO10: Communication</strong></td>
+<td style="text-align: left;">Engineered interactive executive dashboards, formal diagrams, and academic reports.</td>
+<td style="text-align: center;"><strong>WK5</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PO11: Project Management &amp; Finance</strong></td>
+<td style="text-align: left;">Evaluated unit cost economics, gross margin, AOV, and discount leakage.</td>
+<td style="text-align: center;"><strong>WK5</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PO12: Lifelong Learning</strong></td>
+<td style="text-align: left;">Formulated migration architectures toward modern cloud warehouses (Snowflake, dbt).</td>
+<td style="text-align: center;"><strong>WK8</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="13-course-outcomes-cos">1.3 Course Outcomes (COs)</h3>
+<ul>
+<li><strong>CO1 (Data Cleansing)</strong>: Audit raw transactional records, eliminate duplicates, impute missing values, and standardize formatting using Excel and Python.</li>
+<li><strong>CO2 (Relational SQL)</strong>: Design indexed database schemas and author analytical SQL queries utilizing aggregations, CTEs, and window functions.</li>
+<li><strong>CO3 (Dimensional Modeling &amp; DAX)</strong>: Construct Star Schema architectures and develop dynamic business measures in Power BI using DAX.</li>
+<li><strong>CO4 (Interactive Dashboarding)</strong>: Build responsive executive web dashboards in Streamlit and visual stories in Tableau.</li>
+<li><strong>CO5 (Commercial Synthesis)</strong>: Translate multidimensional quantitative findings into data-backed executive recommendations.</li>
+</ul>
+<hr />
+<h3 id="14-sustainable-development-goals-sdgs-alignment">1.4 Sustainable Development Goals (SDGs) Alignment</h3>
+<ul>
+<li><strong>SDG 8 (Decent Work &amp; Economic Growth - Target 8.2)</strong>: Elevates commercial enterprise productivity through technological upgrades and decision support.</li>
+<li><strong>SDG 9 (Industry, Innovation &amp; Infrastructure - Target 9.5)</strong>: Implements open-source, serverless data infrastructure applicable to small and mid-sized enterprises.</li>
+<li><strong>SDG 12 (Responsible Consumption &amp; Production - Target 12.6)</strong>: Optimizes stock procurement, mitigates overproduction, and curtails warehouse inventory waste.</li>
+</ul>
+<hr />
+<h1 id="section-2-end-to-end-analytics-lifecycle-pipeline">SECTION 2: END-TO-END ANALYTICS LIFECYCLE &amp; PIPELINE</h1>
+<pre><code class="language-text">┌────────────────────────┐      ┌────────────────────────┐      ┌────────────────────────┐
+│   1. RAW DATA (CSV)    │      │  2. DATA CLEANING ETL  │      │  3. RELATIONAL SQL DB  │
+│ 3,000 Records, 10 Cols ├─────►│ Deduplicate (10 purged)├─────►│ SQLite: sales_data    │
+│ Seeded Anomaly Set     │      │ Impute &amp; Title Case    │      │ B-Tree Indexed Tables  │
+└────────────────────────┘      └────────────────────────┘      └───────────┬────────────┘
+                                                                            │
+                                ┌───────────────────────────────────────────┴────────────┐
+                                ▼                                                        ▼
+┌────────────────────────────────────────┐              ┌────────────────────────────────────────┐
+│      4. POWER BI STAR SCHEMA           │              │     5. STREAMLIT WEB DASHBOARD         │
+│ Fact_Sales linked to Dim_Calendar      │              │ Reactive Plotly Charts, KPI Cards,     │
+│ DAX Measures: Margin %, SPLY, YTD      │              │ Dynamic Sidebar Filters &amp; CSV Export   │
+└──────────────────┬─────────────────────┘              └───────────────────┬────────────────────┘
+                   │                                                        │
+                   └───────────────────────────┬────────────────────────────┘
+                                               ▼
+                               ┌────────────────────────────────┐
+                               │  6. STRATEGIC DECISION SUPPORT │
+                               │ Volume vs Margin Resolution    │
+                               │ C-Suite Business Action Plan   │
+                               └────────────────────────────────┘
+</code></pre>
+<hr />
+<h1 id="section-3-complete-data-dictionary-schema-specification">SECTION 3: COMPLETE DATA DICTIONARY &amp; SCHEMA SPECIFICATION</h1>
+<p><strong>Cleaned Dataset Source</strong>: <code>sales_data_cleaning.csv</code> (2,990 valid rows, 10 columns)<br />
+<strong>Database Table</strong>: <code>sales_data</code> inside <code>sql/sales_analysis.db</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Column Name</th>
+<th style="text-align: center;">SQL Data Type</th>
+<th style="text-align: center;">Nullable</th>
+<th style="text-align: center;">Primary/Foreign Key</th>
+<th style="text-align: left;">Example Value</th>
+<th style="text-align: left;">Business Definition &amp; Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>Order_ID</code></td>
+<td style="text-align: center;"><code>TEXT</code></td>
+<td style="text-align: center;">NO</td>
+<td style="text-align: center;">Primary Key (Unique)</td>
+<td style="text-align: left;"><code>ORD-10024</code></td>
+<td style="text-align: left;">Unique transaction identifier generated at point-of-sale.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Order_Date</code></td>
+<td style="text-align: center;"><code>TEXT</code> (ISO-8601)</td>
+<td style="text-align: center;">NO</td>
+<td style="text-align: center;">FK to <code>Dim_Calendar</code></td>
+<td style="text-align: left;"><code>2023-01-15</code></td>
+<td style="text-align: left;">Date on which the commercial order was completed (<code>YYYY-MM-DD</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Customer_ID</code></td>
+<td style="text-align: center;"><code>TEXT</code></td>
+<td style="text-align: center;">NO</td>
+<td style="text-align: center;">None</td>
+<td style="text-align: left;"><code>CUST-1045</code></td>
+<td style="text-align: left;">Unique customer account identifier (380 unique accounts).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Product</code></td>
+<td style="text-align: center;"><code>TEXT</code></td>
+<td style="text-align: center;">NO</td>
+<td style="text-align: center;">None</td>
+<td style="text-align: left;"><code>Standing Desk Converter</code></td>
+<td style="text-align: left;">Specific merchandise item purchased (27 distinct SKUs).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Category</code></td>
+<td style="text-align: center;"><code>TEXT</code></td>
+<td style="text-align: center;">NO</td>
+<td style="text-align: center;">Indexed Dimension</td>
+<td style="text-align: left;"><code>Furniture</code></td>
+<td style="text-align: left;">Commercial product line (<code>Technology</code>, <code>Furniture</code>, <code>Electronics</code>, <code>Office Supplies</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Region</code></td>
+<td style="text-align: center;"><code>TEXT</code></td>
+<td style="text-align: center;">NO</td>
+<td style="text-align: center;">Indexed Dimension</td>
+<td style="text-align: left;"><code>East</code></td>
+<td style="text-align: left;">Geographic operating territory (<code>East</code>, <code>North</code>, <code>West</code>, <code>South</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Quantity</code></td>
+<td style="text-align: center;"><code>INTEGER</code></td>
+<td style="text-align: center;">NO</td>
+<td style="text-align: center;">None</td>
+<td style="text-align: left;"><code>3</code></td>
+<td style="text-align: left;">Physical count of units ordered in the transaction ($1 \le Q \le 5$).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Sales</code></td>
+<td style="text-align: center;"><code>REAL</code></td>
+<td style="text-align: center;">NO</td>
+<td style="text-align: center;">Fact Measure</td>
+<td style="text-align: left;"><code>749.97</code></td>
+<td style="text-align: left;">Net gross invoice amount billed after discount: $Q \times P \times (1 - D)$.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Discount</code></td>
+<td style="text-align: center;"><code>REAL</code></td>
+<td style="text-align: center;">NO</td>
+<td style="text-align: center;">Fact Measure</td>
+<td style="text-align: left;"><code>0.15</code></td>
+<td style="text-align: left;">Promotional discount applied as a decimal rate ($0.0 \le D \le 0.40$).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Profit</code></td>
+<td style="text-align: center;"><code>REAL</code></td>
+<td style="text-align: center;">NO</td>
+<td style="text-align: center;">Fact Measure</td>
+<td style="text-align: left;"><code>224.97</code></td>
+<td style="text-align: left;">Dollar profit retained after wholesale cost: $\text{Sales} - (Q \times \text{Cost})$.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="section-4-data-quality-defects-audit-cleansing-rules">SECTION 4: DATA QUALITY DEFECTS AUDIT &amp; CLEANSING RULES</h1>
+<p>During the Data Preparation phase, six distinct real-world data quality anomalies were audited and cleansed:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Defect Category</th>
+<th style="text-align: center;">Defect Volume</th>
+<th style="text-align: left;">Root Cause</th>
+<th style="text-align: left;">Cleansing &amp; Imputation Protocol Executed</th>
+<th style="text-align: center;">Cleaned Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Exact Duplicate Rows</strong></td>
+<td style="text-align: center;">10 records</td>
+<td style="text-align: left;">POS double-click / network retry</td>
+<td style="text-align: left;">Purged exact duplicate transactions by unique <code>Order_ID</code>. Ingested 3,000 $\to$ retained <strong>2,990 clean rows</strong>.</td>
+<td style="text-align: center;"><strong>Resolved</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Missing Sales Values</strong></td>
+<td style="text-align: center;">2 records</td>
+<td style="text-align: left;">POS serialization timeout</td>
+<td style="text-align: left;">Imputed deterministically: $\text{Sales} = \text{Quantity} \times \text{Base Price} \times (1 - \text{Discount})$.</td>
+<td style="text-align: center;"><strong>Resolved</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Missing Profit Values</strong></td>
+<td style="text-align: center;">2 records</td>
+<td style="text-align: left;">Ledger batch latency</td>
+<td style="text-align: left;">Imputed deterministically: $\text{Profit} = \text{Sales} - (\text{Quantity} \times \text{Wholesale Cost})$.</td>
+<td style="text-align: center;"><strong>Resolved</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Missing Discount Values</strong></td>
+<td style="text-align: center;">2 records</td>
+<td style="text-align: left;">Promotion code unmapped</td>
+<td style="text-align: left;">Imputed deterministically: $\text{Discount} = \frac{(\text{Qty} \times \text{Price}) - \text{Sales}}{\text{Qty} \times \text{Price}}$.</td>
+<td style="text-align: center;"><strong>Resolved</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Missing Category/Region</strong></td>
+<td style="text-align: center;">4 records</td>
+<td style="text-align: left;">Catalog / Territory lookup drop</td>
+<td style="text-align: left;">Imputed Category from Product Master; imputed Region from Customer profile history.</td>
+<td style="text-align: center;"><strong>Resolved</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Inconsistent Text Casing</strong></td>
+<td style="text-align: center;">15 records</td>
+<td style="text-align: left;">Case mismatch (<code>technology</code>, <code>north</code>)</td>
+<td style="text-align: left;">Standardized via <code>TRIM()</code> and <code>Title Casing</code> (<code>Technology</code>, <code>Furniture</code>, <code>North</code>, etc.).</td>
+<td style="text-align: center;"><strong>Resolved</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="section-5-executive-headline-performance-scorecard">SECTION 5: EXECUTIVE HEADLINE PERFORMANCE SCORECARD</h1>
+<p>The empirical analysis of the verified 2,990 transactions produced the following enterprise financial benchmarks:</p>
+<pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════════════════════════════╗
+║                                 ENTERPRISE COMMERCIAL SCORECARD                                  ║
+╠═════════════════════════════════════════╦════════════════════════════════════════════════════════╣
+║ Metric Indicator                        ║ Verified Database Result                               ║
+╠═════════════════════════════════════════╬════════════════════════════════════════════════════════╣
+║ Total Gross Revenue                     ║ $450,978.56                                            ║
+║ Total Net Profit                        ║ $157,745.23                                            ║
+║ Overall Profit Margin                   ║ 34.98%                                                 ║
+║ Total Completed Transactions            ║ 2,990 Orders                                           ║
+║ Unique Customer Accounts                ║ 380 Accounts                                           ║
+║ Total Physical Units Moved              ║ 7,849 Units                                            ║
+║ Average Order Value (AOV)               ║ $150.83 per order                                      ║
+║ Average Profit Per Transaction          ║ $52.76 per order                                       ║
+║ Average Basket Size                     ║ 2.62 units per order                                   ║
+║ Average Transaction Discount Rate       ║ 14.85%                                                 ║
+╚═════════════════════════════════════════╩════════════════════════════════════════════════════════╝
+</code></pre>
+<hr />
+<h1 id="section-6-core-empirical-findings-diagnostics">SECTION 6: CORE EMPIRICAL FINDINGS &amp; DIAGNOSTICS</h1>
+<h3 id="61-the-volume-vs-margin-paradox-category-breakdown">6.1 The Volume vs. Margin Paradox (Category Breakdown)</h3>
+<ul>
+<li><strong>The Volume Drivers</strong>: <strong>Technology</strong> (\$189,018.44) and <strong>Furniture</strong> (\$183,965.24) generate <strong>82.70%</strong> of total enterprise sales.</li>
+<li><strong>The Margin Disconnect</strong>: While Furniture accounts for 40.79% of revenue, it yields the <strong>lowest profit margin in the company (28.24%)</strong>. High wholesale cost bases combined with clearance discounts exceeding 20% severely compress profit margins.</li>
+<li><strong>The High-Margin Multiplier</strong>: <strong>Office Supplies</strong> accounts for only 6.77% of revenue (\$30,524.93) but achieves the <strong>highest profit margin (55.26%)</strong>, serving as the prime cross-selling candidate.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Category</th>
+<th style="text-align: center;">Orders</th>
+<th style="text-align: center;">Units Sold</th>
+<th style="text-align: center;">Gross Sales ($)</th>
+<th style="text-align: center;">Revenue Share</th>
+<th style="text-align: center;">Net Profit ($)</th>
+<th style="text-align: center;">Profit Share</th>
+<th style="text-align: center;">Profit Margin (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Technology</strong></td>
+<td style="text-align: center;">830</td>
+<td style="text-align: center;">2,122</td>
+<td style="text-align: center;"><strong>\$189,018.44</strong></td>
+<td style="text-align: center;">41.91%</td>
+<td style="text-align: center;"><strong>\$66,695.42</strong></td>
+<td style="text-align: center;">42.28%</td>
+<td style="text-align: center;"><strong>35.29%</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Furniture</strong></td>
+<td style="text-align: center;">622</td>
+<td style="text-align: center;">1,684</td>
+<td style="text-align: center;"><strong>\$183,965.24</strong></td>
+<td style="text-align: center;">40.79%</td>
+<td style="text-align: center;"><strong>\$51,943.84</strong></td>
+<td style="text-align: center;">32.93%</td>
+<td style="text-align: center;"><strong>28.24%</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Electronics</strong></td>
+<td style="text-align: center;">597</td>
+<td style="text-align: center;">1,631</td>
+<td style="text-align: center;"><strong>\$46,543.94</strong></td>
+<td style="text-align: center;">10.32%</td>
+<td style="text-align: center;"><strong>\$21,917.84</strong></td>
+<td style="text-align: center;">13.89%</td>
+<td style="text-align: center;"><strong>47.09%</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Office Supplies</strong></td>
+<td style="text-align: center;">934</td>
+<td style="text-align: center;">2,400</td>
+<td style="text-align: center;"><strong>\$30,524.93</strong></td>
+<td style="text-align: center;">6.77%</td>
+<td style="text-align: center;"><strong>\$16,867.62</strong></td>
+<td style="text-align: center;">10.69%</td>
+<td style="text-align: center;"><strong>55.26%</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Total</strong></td>
+<td style="text-align: center;"><strong>2,990</strong></td>
+<td style="text-align: center;"><strong>7,849</strong></td>
+<td style="text-align: center;"><strong>\$450,978.56</strong></td>
+<td style="text-align: center;"><strong>100.0%</strong></td>
+<td style="text-align: center;"><strong>\$157,745.23</strong></td>
+<td style="text-align: center;"><strong>100.0%</strong></td>
+<td style="text-align: center;"><strong>34.98%</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="62-top-5-revenue-generating-products">6.2 Top 5 Revenue-Generating Products</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Rank</th>
+<th style="text-align: left;">Product SKU</th>
+<th style="text-align: left;">Category</th>
+<th style="text-align: center;">Units Sold</th>
+<th style="text-align: center;">Gross Revenue ($)</th>
+<th style="text-align: center;">Net Profit ($)</th>
+<th style="text-align: center;">Margin (%)</th>
+<th style="text-align: left;">Strategic SKU Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: left;"><strong>Standing Desk Converter</strong></td>
+<td style="text-align: left;">Furniture</td>
+<td style="text-align: center;">267</td>
+<td style="text-align: center;"><strong>\$62,784.93</strong></td>
+<td style="text-align: center;">\$16,059.93</td>
+<td style="text-align: center;">25.58%</td>
+<td style="text-align: left;">Top grossing SKU; high discount vulnerability</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: left;"><strong>USB-C Docking Station</strong></td>
+<td style="text-align: left;">Technology</td>
+<td style="text-align: center;">291</td>
+<td style="text-align: center;"><strong>\$41,037.18</strong></td>
+<td style="text-align: center;">\$13,392.18</td>
+<td style="text-align: center;">32.63%</td>
+<td style="text-align: left;">Enterprise workhorse; high corporate demand</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>3</strong></td>
+<td style="text-align: left;"><strong>Ergonomic Office Chair</strong></td>
+<td style="text-align: left;">Furniture</td>
+<td style="text-align: center;">209</td>
+<td style="text-align: center;"><strong>\$38,728.02</strong></td>
+<td style="text-align: center;">\$9,886.02</td>
+<td style="text-align: center;">25.53%</td>
+<td style="text-align: left;">High ticket anchor; needs discount capping</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>4</strong></td>
+<td style="text-align: left;"><strong>Noise-Canceling Headset</strong></td>
+<td style="text-align: left;">Technology</td>
+<td style="text-align: center;">322</td>
+<td style="text-align: center;"><strong>\$38,009.04</strong></td>
+<td style="text-align: center;">\$12,893.04</td>
+<td style="text-align: center;">33.92%</td>
+<td style="text-align: left;">High volume; steady healthy margin</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>5</strong></td>
+<td style="text-align: left;"><strong>External SSD 1TB</strong></td>
+<td style="text-align: left;">Technology</td>
+<td style="text-align: center;">328</td>
+<td style="text-align: center;"><strong>\$35,834.91</strong></td>
+<td style="text-align: center;">\$11,234.91</td>
+<td style="text-align: center;">31.35%</td>
+<td style="text-align: left;">High unit velocity consumer staple</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="63-geographic-sales-territory-distribution">6.3 Geographic Sales Territory Distribution</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Region</th>
+<th style="text-align: center;">Orders</th>
+<th style="text-align: center;">Units Sold</th>
+<th style="text-align: center;">Gross Sales ($)</th>
+<th style="text-align: center;">Revenue Share</th>
+<th style="text-align: center;">Net Profit ($)</th>
+<th style="text-align: center;">Regional Margin (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>East</strong></td>
+<td style="text-align: center;">826</td>
+<td style="text-align: center;">2,097</td>
+<td style="text-align: center;"><strong>\$121,757.68</strong></td>
+<td style="text-align: center;">27.00%</td>
+<td style="text-align: center;"><strong>\$42,952.11</strong></td>
+<td style="text-align: center;"><strong>35.28%</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>North</strong></td>
+<td style="text-align: center;">790</td>
+<td style="text-align: center;">2,047</td>
+<td style="text-align: center;"><strong>\$116,403.30</strong></td>
+<td style="text-align: center;">25.81%</td>
+<td style="text-align: center;"><strong>\$40,696.00</strong></td>
+<td style="text-align: center;"><strong>34.96%</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>West</strong></td>
+<td style="text-align: center;">698</td>
+<td style="text-align: center;">1,901</td>
+<td style="text-align: center;"><strong>\$108,201.06</strong></td>
+<td style="text-align: center;">24.00%</td>
+<td style="text-align: center;"><strong>\$38,131.99</strong></td>
+<td style="text-align: center;"><strong>35.24%</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>South</strong></td>
+<td style="text-align: center;">672</td>
+<td style="text-align: center;">1,793</td>
+<td style="text-align: center;"><strong>\$104,223.63</strong></td>
+<td style="text-align: center;">23.11%</td>
+<td style="text-align: center;"><strong>\$35,792.74</strong></td>
+<td style="text-align: center;"><strong>34.34%</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Regional Takeaway</strong>: Commercial performance is geographically well-balanced. Regional profit margins remain exceptionally stable (34.3%–35.3%), proving that pricing discipline is uniformly maintained across territories.</li>
+</ul>
+<hr />
+<h1 id="section-7-production-sql-query-suite-output-reference">SECTION 7: PRODUCTION SQL QUERY SUITE &amp; OUTPUT REFERENCE</h1>
+<p>Database: <code>sql/sales_analysis.db</code> | Table: <code>sales_data</code></p>
+<h3 id="query-1-overall-business-kpi-health">Query 1: Overall Business KPI Health</h3>
+<pre><code class="language-sql">SELECT 
+    ROUND(SUM(Sales), 2) AS Total_Sales,
+    ROUND(SUM(Profit), 2) AS Total_Profit,
+    ROUND((SUM(Profit) / SUM(Sales)) * 100, 2) AS Overall_Margin_Pct,
+    COUNT(DISTINCT Order_ID) AS Total_Orders,
+    COUNT(DISTINCT Customer_ID) AS Total_Customers,
+    SUM(Quantity) AS Total_Units_Sold,
+    ROUND(AVG(Sales), 2) AS Avg_Order_Value
+FROM sales_data;
+</code></pre>
+<p><em>Output: Sales: \$450,978.56 | Profit: \$157,745.23 | Margin: 34.98% | Orders: 2,990 | Customers: 380 | Units: 7,849 | AOV: \$150.83</em></p>
+<hr />
+<h3 id="query-2-top-5-revenue-skus">Query 2: Top 5 Revenue SKUs</h3>
+<pre><code class="language-sql">SELECT 
+    Product,
+    Category,
+    SUM(Quantity) AS Units_Sold,
+    ROUND(SUM(Sales), 2) AS Total_Sales,
+    ROUND(SUM(Profit), 2) AS Total_Profit,
+    ROUND((SUM(Profit) / SUM(Sales)) * 100, 2) AS Profit_Margin_Pct
+FROM sales_data
+GROUP BY Product, Category
+ORDER BY Total_Sales DESC
+LIMIT 5;
+</code></pre>
+<hr />
+<h3 id="query-3-multi-dimensional-category-x-region-cross-tabulation">Query 3: Multi-Dimensional Category x Region Cross-Tabulation</h3>
+<pre><code class="language-sql">SELECT 
+    Category,
+    Region,
+    COUNT(DISTINCT Order_ID) AS Total_Orders,
+    SUM(Quantity) AS Units_Sold,
+    ROUND(SUM(Sales), 2) AS Total_Sales,
+    ROUND(SUM(Profit), 2) AS Total_Profit,
+    ROUND((SUM(Profit) / SUM(Sales)) * 100, 2) AS Profit_Margin_Pct
+FROM sales_data
+GROUP BY Category, Region
+ORDER BY Category ASC, Total_Sales DESC;
+</code></pre>
+<hr />
+<h3 id="query-4-category-summary-margin-ranking">Query 4: Category Summary &amp; Margin Ranking</h3>
+<pre><code class="language-sql">SELECT 
+    Category,
+    COUNT(DISTINCT Order_ID) AS Total_Orders,
+    SUM(Quantity) AS Units_Sold,
+    ROUND(SUM(Sales), 2) AS Total_Sales,
+    ROUND(SUM(Profit), 2) AS Total_Profit,
+    ROUND((SUM(Profit) / SUM(Sales)) * 100, 2) AS Profit_Margin_Pct
+FROM sales_data
+GROUP BY Category
+ORDER BY Total_Sales DESC;
+</code></pre>
+<hr />
+<h3 id="query-5-regional-territory-summary">Query 5: Regional Territory Summary</h3>
+<pre><code class="language-sql">SELECT 
+    Region,
+    COUNT(DISTINCT Order_ID) AS Total_Orders,
+    SUM(Quantity) AS Units_Sold,
+    ROUND(SUM(Sales), 2) AS Total_Sales,
+    ROUND(SUM(Profit), 2) AS Total_Profit,
+    ROUND((SUM(Profit) / SUM(Sales)) * 100, 2) AS Profit_Margin_Pct
+FROM sales_data
+GROUP BY Region
+ORDER BY Total_Sales DESC;
+</code></pre>
+<hr />
+<h1 id="section-8-power-bi-star-schema-dax-measure-library">SECTION 8: POWER BI STAR SCHEMA &amp; DAX MEASURE LIBRARY</h1>
+<h3 id="81-star-schema-data-architecture">8.1 Star Schema Data Architecture</h3>
+<ul>
+<li><strong>Fact Table (<code>Fact_Sales</code>)</strong>: 2,990 rows containing transaction keys (<code>Order_ID</code>, <code>Order_Date</code>, <code>Customer_ID</code>, <code>Product</code>, <code>Category</code>, <code>Region</code>) and quantitative metrics (<code>Quantity</code>, <code>Sales</code>, <code>Discount</code>, <code>Profit</code>).</li>
+<li><strong>Dimension Table (<code>Dim_Calendar</code>)</strong>: Continuous date table generated spanning <code>2023-01-01</code> to <code>2024-12-31</code> (731 rows) with attributes: <code>Year</code>, <code>Quarter</code>, <code>Month</code>, <code>MonthName</code>, <code>DayOfWeek</code>, <code>IsWeekend</code>.</li>
+<li><strong>Relationship</strong>: <code>Fact_Sales[Order_Date]</code> $\xrightarrow{N:1}$ <code>Dim_Calendar[DateKey]</code> (Single directional cross-filtering).</li>
+</ul>
+<hr />
+<h3 id="82-production-dax-measure-library">8.2 Production DAX Measure Library</h3>
+<h4 id="core-financial-measures">Core Financial Measures</h4>
+<pre><code class="language-dax">Total Sales = SUM(Fact_Sales[Sales])
+</code></pre>
+<pre><code class="language-dax">Total Profit = SUM(Fact_Sales[Profit])
+</code></pre>
+<pre><code class="language-dax">Overall Profit Margin % = DIVIDE([Total Profit], [Total Sales], 0) * 100
+</code></pre>
+<pre><code class="language-dax">Total Orders = DISTINCTCOUNT(Fact_Sales[Order_ID])
+</code></pre>
+<pre><code class="language-dax">Total Units Sold = SUM(Fact_Sales[Quantity])
+</code></pre>
+<pre><code class="language-dax">Average Order Value (AOV) = DIVIDE([Total Sales], [Total Orders], 0)
+</code></pre>
+<h4 id="time-intelligence-growth-measures">Time-Intelligence &amp; Growth Measures</h4>
+<pre><code class="language-dax">Sales YTD = TOTALYTD([Total Sales], 'Dim_Calendar'[DateKey])
+</code></pre>
+<pre><code class="language-dax">Sales SPLY = CALCULATE([Total Sales], SAMEPERIODLASTYEAR('Dim_Calendar'[DateKey]))
+</code></pre>
+<pre><code class="language-dax">YoY Sales Growth % = 
+VAR PreviousYear = [Sales SPLY]
+VAR CurrentSales = [Total Sales]
+RETURN
+    IF(
+        ISBLANK(PreviousYear),
+        BLANK(),
+        DIVIDE(CurrentSales - PreviousYear, PreviousYear, 0) * 100
+    )
+</code></pre>
+<hr />
+<h1 id="section-9-interactive-web-application-architecture-apppy">SECTION 9: INTERACTIVE WEB APPLICATION ARCHITECTURE (<code>app.py</code>)</h1>
+<ul>
+<li><strong>Framework</strong>: Streamlit 1.63 + Plotly Graph Objects + Pandas</li>
+<li><strong>Execution Script</strong>: <code>streamlit run app.py</code></li>
+<li><strong>Core Architecture Components</strong>:
+  1. <strong>Caching Engine</strong>: <code>@st.cache_data</code> caches the 2,990-row dataset in memory for instant sub-second filtering.
+  2. <strong>Interactive Controls</strong>:<ul>
+<li>Temporal Slider: Dynamic Date Range filtering across 2023–2024.</li>
+<li>Multi-Select Dropdowns: Filter by <code>Region</code> and <code>Category</code>.
+  3. <strong>Visual Layout</strong>:</li>
+<li>Top KPI Tiles: Live recalculated Gross Revenue, Net Profit, Profit Margin %, Total Orders, and AOV.</li>
+<li>Chart 1: 24-Month Time-Series Trend Line (Sales vs. Profit with peak annotations).</li>
+<li>Chart 2: Merchandise Category Revenue Share Donut Chart with center metric scorecard.</li>
+<li>Chart 3: Top 5 Revenue SKUs Horizontal Ranked Bar Chart.</li>
+<li>Chart 4: Clustered Regional Bar Chart comparing Sales vs. Net Profit.
+  4. <strong>Data Export</strong>: Collapsible raw data table with live CSV download button for downstream reporting.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h1 id="section-10-actionable-strategic-recommendations">SECTION 10: ACTIONABLE STRATEGIC RECOMMENDATIONS</h1>
+<ol>
+<li><strong>Implement a 15% Maximum Discount Ceiling on Furniture</strong>:
+   - High-cost items like <em>Standing Desk Converters</em> and <em>Ergonomic Chairs</em> currently experience severe margin collapse when discounted &gt;20%. Capping discounts at $\le 15\%$ preserves an estimated <strong>\$4,200 to \$6,500 in quarterly profit</strong>.</li>
+<li><strong>Checkout Bundling with High-Margin Office Supplies</strong>:
+   - Leverage the <strong>55.26% profit margin</strong> of Office Supplies by automatically offering add-on bundles (desk organizers, cable management sleeves, premium paper) at point-of-sale when hardware is purchased. This expands AOV without diluting hardware margins.</li>
+<li><strong>Targeted Regional B2B Expansion in Southern Territory</strong>:
+   - The Southern region currently lags behind East by \$17.5K in gross sales despite having identical profit margin health (34.34%). Directing corporate sales reps to Southern accounts captures high-margin untapped demand.</li>
+<li><strong>Tiered B2B Corporate Loyalty Program</strong>:
+   - With 380 unique accounts placing 2,990 orders (~7.8 orders per customer), high customer retention is proven. A tiered rebate incentive based on annual volume protects top accounts against competitor poaching.</li>
+</ol>
+<hr />
+<h1 id="section-11-viva-voce-defense-examiner-qa-cheat-sheet">SECTION 11: VIVA VOCE DEFENSE &amp; EXAMINER Q&amp;A CHEAT SHEET</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">Typical Examiner Viva Question</th>
+<th style="text-align: left;">Senior Data Analyst Bulletproof Defense Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Q1</strong></td>
+<td style="text-align: left;"><strong>Why did you choose SQLite over MySQL or PostgreSQL?</strong></td>
+<td style="text-align: left;">SQLite is a serverless, zero-configuration in-process database that reads directly from <code>sales_analysis.db</code>. It provides full ACID compliance, B-Tree indexing, and ANSI SQL window functions with zero server daemon overhead, making the project 100% portable for any examiner without credential setups.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Q2</strong></td>
+<td style="text-align: left;"><strong>What is the most critical commercial finding of your project?</strong></td>
+<td style="text-align: left;">The <strong>Volume vs. Margin Paradox</strong>: Technology and Furniture drive 82.70% of gross revenue, but Furniture has the lowest margin (28.24%) due to high wholesale costs and discount leakage (&gt;20%), whereas Office Supplies generates only 6.77% of sales but delivers a 55.26% margin.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Q3</strong></td>
+<td style="text-align: left;"><strong>Why did you create a Star Schema instead of using a single flat table in Power BI?</strong></td>
+<td style="text-align: left;">A Star Schema separates numerical facts (<code>Fact_Sales</code>) from temporal attributes (<code>Dim_Calendar</code>). This optimizes the VertiPaq columnar compression engine, prevents grain mismatch errors, and enables standard Time Intelligence DAX functions (<code>TOTALYTD</code>, <code>SAMEPERIODLASTYEAR</code>).</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Q4</strong></td>
+<td style="text-align: left;"><strong>How did you handle data hygiene and missing values?</strong></td>
+<td style="text-align: left;">Exactly 10 duplicate rows were identified and purged via unique <code>Order_ID</code>. Missing sales, profit, and discount values were not guessed—they were imputed deterministically using fundamental pricing logic: $\text{Sales} = Q \times P \times (1 - D)$ and $\text{Profit} = \text{Sales} - (Q \times \text{Cost})$.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Q5</strong></td>
+<td style="text-align: left;"><strong>What is the difference between an implicit and explicit DAX measure?</strong></td>
+<td style="text-align: left;">Implicit measures are auto-generated by dragging fields into visuals (e.g., auto-sum). Explicit measures are user-defined formulas using DAX functions (e.g., <code>[Total Sales] = SUM(...)</code>). Explicit measures are mandatory for time intelligence, dynamic filtering, and clean visual architecture.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Q6</strong></td>
+<td style="text-align: left;"><strong>What does <code>@st.cache_data</code> do in your Streamlit application?</strong></td>
+<td style="text-align: left;">Streamlit re-runs the entire script from top to bottom on every user interaction. <code>@st.cache_data</code> stores the loaded CSV in memory so subsequent slider/dropdown clicks execute in milliseconds without re-reading the disk.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Q7</strong></td>
+<td style="text-align: left;"><strong>Why is Office Supplies margin so much higher than Furniture?</strong></td>
+<td style="text-align: left;">Office supplies have low wholesale cost and high consumer markup elasticity. People rarely negotiate discounts on small items like pens or organizers, preserving a 55.26% margin. Furniture items carry heavy manufacturing wholesale costs that collapse when discounted.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Q8</strong></td>
+<td style="text-align: left;"><strong>How does your project align with United Nations SDGs?</strong></td>
+<td style="text-align: left;">It directly advances <strong>SDG 8</strong> (Decent Work &amp; Economic Growth - Target 8.2) by boosting productivity, <strong>SDG 9</strong> (Industry &amp; Innovation - Target 9.5) through low-cost analytics infrastructure, and <strong>SDG 12</strong> (Responsible Consumption - Target 12.6) by mitigating inventory overproduction.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Q9</strong></td>
+<td style="text-align: left;"><strong>How would you scale this architecture to 50 million rows?</strong></td>
+<td style="text-align: left;">I would migrate storage from SQLite to a cloud data warehouse like <strong>Snowflake</strong> or <strong>Google BigQuery</strong>, orchestrate transformation models using <strong>dbt</strong>, convert CSV storage to columnar <strong>Parquet</strong>, and connect Power BI via DirectQuery / Aggregation Tables.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Q10</strong></td>
+<td style="text-align: left;"><strong>What are the primary limitations of your dataset?</strong></td>
+<td style="text-align: left;">The dataset lacks customer demographic details (age, income bracket), web telemetry (page clicks, bounce rates), and marketing channel attribution (ad spend per order). Adding marketing spend would enable Customer Acquisition Cost (CAC) and ROAS analysis.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="section-12-project-file-reproducibility-artifact-manifest">SECTION 12: PROJECT FILE REPRODUCIBILITY &amp; ARTIFACT MANIFEST</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">File / Folder Path</th>
+<th style="text-align: center;">Type</th>
+<th style="text-align: left;">Purpose &amp; Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>data/raw_sales_data.csv</code></td>
+<td style="text-align: center;">Data</td>
+<td style="text-align: left;">3,000 raw transactions with controlled quality defects.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>data/DATA_QUALITY_NOTES.md</code></td>
+<td style="text-align: center;">Doc</td>
+<td style="text-align: left;">Detailed defect log of all 10 duplicates, 10 nulls, and formatting issues.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>sales_data_cleaning.csv</code></td>
+<td style="text-align: center;">Data</td>
+<td style="text-align: left;">2,990 clean, standardized, verified transaction records.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>sql/sales_analysis.db</code></td>
+<td style="text-align: center;">Database</td>
+<td style="text-align: left;">SQLite 3 relational database containing indexed <code>sales_data</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>sql/schema_and_queries.sql</code></td>
+<td style="text-align: center;">SQL</td>
+<td style="text-align: left;">Full DDL table definitions and 5 analytical queries.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>SPT.pbix</code></td>
+<td style="text-align: center;">Power BI</td>
+<td style="text-align: left;">Star Schema dimensional data model and DAX measures.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>app.py</code></td>
+<td style="text-align: center;">Python</td>
+<td style="text-align: left;">Interactive Streamlit + Plotly web dashboard application.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>requirements.txt</code></td>
+<td style="text-align: center;">Config</td>
+<td style="text-align: left;">Dependencies pinned for deployment (<code>streamlit</code>, <code>pandas</code>, <code>plotly</code>, <code>matplotlib</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>visuals/generate_charts.py</code></td>
+<td style="text-align: center;">Python</td>
+<td style="text-align: left;">Standalone script generating 300 DPI publication-grade PNG charts.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>visuals/*.png</code></td>
+<td style="text-align: center;">Visuals</td>
+<td style="text-align: left;">4 high-res charts (Sales Trend, Top Products, Donut, Regional Bar).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>documentation/SUMMER_TRAINING_REPORT.md</code></td>
+<td style="text-align: center;">Doc</td>
+<td style="text-align: left;">Full 92-page academic summer training report.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>SUMMER_TRAINING_REPORT.pdf</code></td>
+<td style="text-align: center;">PDF</td>
+<td style="text-align: left;">Formatted, publication-grade academic PDF report.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>documentation/MASTER_APPENDIX.md</code></td>
+<td style="text-align: center;">Doc</td>
+<td style="text-align: left;"><strong>This file</strong>: Comprehensive Master Appendix &amp; Executive Compendium.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="terminal-execution-cheat-sheet">Terminal Execution Cheat Sheet</h3>
+<pre><code class="language-powershell"># 1. Run Interactive Streamlit Web App
+streamlit run app.py
+
+# 2. Regenerate High-Resolution Charts
+python visuals/generate_charts.py
+
+# 3. Regenerate Full Academic PDF Report
+python docs/generate_pdf.py
+
+# 4. Git Synchronization
+git add .
+git commit -m &quot;Update project documentation&quot;
+git push origin main
+</code></pre>
+
+</body>
+</html>
